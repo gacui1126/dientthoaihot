@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSlidesTable extends Migration
+class CreateProductTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSlidesTable extends Migration
      */
     public function up()
     {
-        Schema::create('slides', function (Blueprint $table) {
+        Schema::create('product_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('image_path');
-            $table->string('image');
+            $table->integer('parent_id')->default(0);
+            $table->timestamps('deleted_at')->nullable;
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSlidesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slides');
+        Schema::dropIfExists('product_types');
     }
 }

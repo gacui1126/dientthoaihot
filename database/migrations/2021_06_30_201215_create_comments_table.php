@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->integer('id_user');
+            $table->integer('id_product');
+            $table->integer('parent_id')->nullable();
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('comments');
     }
 }

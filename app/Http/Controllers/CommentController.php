@@ -19,7 +19,7 @@ class CommentController extends Controller
                 <div class="row">
                         <div class="col-md-2">
                             <a href="">
-                                <img src="source/assets/dest/images/avata2.png" width="50%" style="margin-left:70px" >
+                                <img src="'.$comment->user->image_path.'" width="50%" style="margin-left:65px;border-radius:50%" >
                             </a>
                         </div>
                         <div class="col-md-9 style_comment">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnParentIdPermission extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddColumnParentIdPermission extends Migration
      */
     public function up()
     {
-        Schema::table('permissions', function (Blueprint $table) {
-            // $table->integer('parent_id')->default(0);
-            $table->string('auth_name');
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('id_user');
+            $table->integer('id_role');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddColumnParentIdPermission extends Migration
      */
     public function down()
     {
-        Schema::table('permissions', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('role_user');
     }
 }
