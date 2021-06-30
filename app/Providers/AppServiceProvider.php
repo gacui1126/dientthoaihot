@@ -8,6 +8,7 @@ use App\Cart;
 use Session;
 use App\Role;
 use App\User;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,7 +31,15 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('header',function($view){
             $product_type = ProductType::all();
-            $view->with('product_type',$product_type);
+            if(Auth::check()){
+                $name = Auth::user()->roles;
+                foreach($name as $n){
+                    $na = $n->name;
+                }
+            }else{
+                $na = '';
+            }
+            $view->with(['product_type'=>$product_type , 'na'=>$na]);
         });
 
         view()->composer('header',function($view){

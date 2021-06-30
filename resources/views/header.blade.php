@@ -11,7 +11,8 @@
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                     @if(Auth::check())
-                        @if(Auth::user()->full_name == 'Admin')
+                        {{-- @if(Auth::user()->full_name == 'admin') --}}
+                        @if($na === 'admin' or $na === 'content' or $na ==='developer')
                         <li><a class="btn btn-success" href="{{route('admin')}}"><i class="fa fa-user"></i>Chào {{Auth::user()->full_name}}</a></li>
                         <li><a class="btn btn-danger" href="{{route('logout')}}"><i class="fa fa-user"></i>Đăng xuất</a></li>
                         @else
