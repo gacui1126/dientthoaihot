@@ -9,6 +9,7 @@ use Session;
 use App\Role;
 use App\User;
 use Auth;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        URL::forceScheme('https');
         view()->composer('header',function($view){
             $product_type = ProductType::all();
             if(Auth::check()){
