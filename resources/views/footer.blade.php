@@ -45,10 +45,9 @@
         </div> <!-- .row -->
     </div> <!-- .container -->
 </div> <!-- #footer -->
-<div class="copyright">
+<div class="copyright" style="text-align:center">
     <div class="container">
         <p class="pull-left">Privacy policy. (&copy;) 2021</p>
-
     </div> <!-- .container -->
 </div> <!-- .copyright -->
 

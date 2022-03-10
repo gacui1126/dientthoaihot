@@ -345,7 +345,7 @@
         });
     });
 </script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $('.action_delete').click( function (){
         var id_comment = $('.id_comment').val();
         var _token = $('input[name="_token"]').val();
@@ -359,7 +359,7 @@
                 }
             });
     });
-</script>
+</script> --}}
 @endsection
 
 

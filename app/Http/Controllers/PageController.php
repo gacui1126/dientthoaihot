@@ -16,7 +16,6 @@ use Auth;
 use App\Role;
 use App\Comment;
 use Socialite;
-
 use Illuminate\Http\Request;
 
 
@@ -64,13 +63,14 @@ class PageController extends Controller
     public function getAbout(){
         return view('page.about');
     }
-    public function getAddToCart(Request $req,$id){
-        $product = Product::find($id);
+
+    public function AddToCart(Request $req){
+        $product = Product::find($req->id);
         $oldCart = Session('cart')?Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        $cart->add($product,$id);
-        $req->session()->put('cart',$cart);
-        return redirect()->back();
+        $cart->add($product,$req->id);
+        Session::put('cart',$cart);
+        Session::save();
     }
 
     public function getDeleteCart($id){
@@ -189,6 +189,7 @@ class PageController extends Controller
 
     public function getLogout(){
         Auth::logout();
+        Session::flush(); //huy session
         return redirect()->route('trang-chu');
     }
 

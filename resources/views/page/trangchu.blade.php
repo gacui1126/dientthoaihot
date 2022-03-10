@@ -1,4 +1,5 @@
 @extends('master')
+
 @section('content')
 
 <div class="fullwidthbanner-container">
@@ -30,30 +31,39 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="beta-products-list">
-            <h4>Sản Phẩm Mới</h4>
+            <h4 style="text-align: center;"><strong>Sản Phẩm Mới</strong></h4>
+            <div style="border: 1px solid rgb(226, 225, 146); width: 30%;margin-left:400px;margin-bottom: 30px"></div>
             <div class="beta-products-details">
-                {{-- <p class="pull-left">438 styles found</p> --}}
                 <div class="clearfix"></div>
             </div>
             <div class="row">
                 @foreach ($products as $Product)
                 <div class="col-sm-3">
                     <div class="single-item">
-                        {{-- <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div> --}}
-                        <div class="single-item-header">
-                        <a href="{{route('product',$Product->id)}}"><img src="{{$Product->image_path}}" alt="" height="250px"></a>
-                        </div>
-                        <div class="single-item-body">
-                        <p class="single-item-title">{{$Product->name}}</p>
-                            <p class="single-item-price">
-                            <span>{{number_format($Product->unit_price,0,'','.')}} vnd</span>
-                            </p>
-                        </div>
-                        <div class="single-item-caption">
-                            <a class="add-to-cart pull-left" href="{{route('addtocart',$Product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="beta-btn primary" href="{{route('product',$Product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
-                            <div class="clearfix"></div>
-                        </div>
+                        <form>
+                            @csrf
+                            <input type="hidden" class="product_id_{{$Product->id}}" value="{{$Product->id}}">
+                            <input type="hidden" class="product_name_{{$Product->id}}" value="{{$Product->name}}">
+                            <input type="hidden" class="product_image_path_{{$Product->id}}" value="{{$Product->image_path}}">
+                            <input type="hidden" class="product_unit_price_{{$Product->id}}" value="{{$Product->unit_price}}">
+                            <input type="hidden" class="product_quantity_{{$Product->id}}" value="1">
+
+                            <div class="single-item-header">
+                                <a href="{{route('product',$Product->id)}}"><img src="{{$Product->image_path}}" alt="" height="250px"></a>
+                            </div>
+                                <div class="single-item-body" style="padding:5px 0">
+                                <p class="single-item-title"><strong>{{$Product->name}}</strong></p>
+                                    <p class="single-item-price">
+                                    <span>{{number_format($Product->unit_price,0,'','.')}} vnd</span>
+                                    </p>
+                                </div>
+                                <div class="single-item-caption">
+                                    <button type="button" class="btn btn-primary add-to-cart1" data-id_product="{{$Product->id}}"><i class="fa fa-shopping-cart"></i></button>
+                                    <a class="btn btn-warning beta-btn" href="{{route('product',$Product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
+                        </form>
+
                     </div>
                 </div>
 
@@ -63,33 +73,36 @@
         <div class="space50">&nbsp;</div>
 
         <div class="beta-products-list">
-            <h4>Sản Phẩm Bán Chạy</h4>
+            <div  style="text-align: center;">
+                <h4><strong>Sản Phẩm Bán Chạy</strong></h4>
+            </div>
+            <div style="border: 1px solid rgb(226, 225, 146); width: 30%;margin-left:400px;margin-bottom: 30px"></div>
             <div class="beta-products-details">
                 {{-- <p class="pull-left">438 styles found</p> --}}
                 <div class="clearfix"></div>
             </div>
             <div class="row">
                 @foreach ($products_top as $Products_top)
-                <div class="col-sm-3">
+                <div class="col-sm-3" style="margin-bottom: 10px;">
                     <div class="single-item">
                         <div class="single-item-header">
                         <a href="{{route('product',$Products_top->id)}}"><img src="{{$Products_top->image_path}}" alt="" height="250px"></a>
                         </div>
-                        <div class="single-item-body">
-                        <p class="single-item-title">{{$Products_top->name}}</p>
+                        <div class="single-item-body" style="padding:5px 0">
+                        <p class="single-item-title"><strong>{{$Products_top->name}}</strong></p>
                             <p class="single-item-price">
-                                <span>{{number_format($Products_top->unit_price)}} vnd</span>
+                                <span>{{number_format($Products_top->unit_price,0,',','.')}} vnd</span>
                             </p>
                         </div>
                         <div class="single-item-caption">
-                            <a class="add-to-cart pull-left" href="{{route('addtocart',$Products_top->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="beta-btn primary" href="{{route('product',$Products_top->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                            <button class="btn btn-primary add-to-cart1" data-id_product="{{$Product->id}}"><i class="fa fa-shopping-cart"></i></button>
+                            <a class="btn btn-warning beta-btn primary" href="{{route('product',$Products_top->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
                 @endforeach
-                <div class="row" style="margin-left: 400px;">{{$products_top->links()}}</div>
+                <div class="row" style="margin-left: 500px;">{{$products_top->links()}}</div>
             </div>
             <div class="space40">&nbsp;</div>
         </div>
@@ -100,4 +113,42 @@
 </div> <!-- .main-content -->
 </div> <!-- #content -->
 </div> <!-- .container -->
+@endsection
+
+@section('js')
+    <script>
+    $(document).ready(function (){
+        $('.add-to-cart1').click( function(){
+            var _token = $('input[name="_token"]').val();
+            var id = $(this).data('id_product');
+            var product_id = $('.product_id_' + id).val();
+            var product_name = $('.product_name_' + id).val();
+            var product_image_path = $('.product_image_path_' + id).val();
+            var product_unit_price = $('.product_unit_price_' + id).val();
+            var product_quantity = $('.product_qty_' + id).val();
+            $.ajax({
+                url: '{{url('/add-to-cart')}}',
+                method: 'POST',
+                data:{
+                    id: product_id,
+                    name: product_name,
+                    image_path: product_image_path,
+                    qty: product_quantity,
+                    price: product_unit_price,
+                    _token: _token,
+                },
+                success:function(data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Đã thêm vào giỏ hàng',
+                        showCancelButton: true,
+                        cancelButtonText: "Xem tiếp",
+                        showConfirmButton: false,
+                        footer: '<a style="color:green;" href="/checkout">Đến thanh toán</a>'
+                        })
+                }
+            });
+        });
+    });
+</script>
 @endsection

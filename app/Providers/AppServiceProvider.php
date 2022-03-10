@@ -30,18 +30,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // URL::forceScheme('https');
+        //URL::forceScheme('https');
         view()->composer('header',function($view){
             $product_type = ProductType::all();
-            if(Auth::check()){
-                $name = Auth::user()->roles;
-                foreach($name as $n){
-                    $na = $n->name;
-                }
-            }else{
-                $na = '';
-            }
-            $view->with(['product_type'=>$product_type , 'na'=>$na]);
+            $view->with(['product_type'=>$product_type]);
         });
 
         view()->composer('header',function($view){

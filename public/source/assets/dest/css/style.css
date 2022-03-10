@@ -5132,15 +5132,15 @@ font-size: 35px;}
 .beta-pricing span.beta-price-button{float:left;width:100%;background:white;text-align:center;border-top: 1px solid #e1e1e1;padding: 30px 0;background-color: #f6f6f6; float:left;border-left: 1px solid #e1e1e1;border-right: 1px solid #e1e1e1;border-bottom: 1px solid #e1e1e1;}
 .beta-pricing span.beta-price-button a{background: #406590;}
 
-.main-menu ul li.active> a{background:#3a5c83; color:white!important;}
+.main-menu ul li.active> a{background:#9cb869; color:white!important;}
 .sub-menu li.active, .children li.active{background:#3a5c83; color:white!important;}
 .sub-menu li a, .children li a{font-size:14px;}
 .sub-menu{width:240px;}
 #logo{padding-right: 7px;}
 .beta-highlight{background-color:#3a5c83;}
 .bg-color10{background-color:#58a7c6;}
-.parent-active>a{background:#3a5c83; color:white;}
-.sub-menu li.parent-active, .children li.parent-active{background:#3a5c83; }
+.parent-active>a{background:#91a576; color:white;}
+.sub-menu li.parent-active, .children li.parent-active{background:#91a576; }
 .sub-menu li.parent-active>a, .children li.parent-active>a{color:white!important;}
 .tp-bullets.simplebullets.navbar{top: 40%;
 width: 100%; left:0px!important; bottom:0px!important; margin-left:0px!important;
@@ -5203,3 +5203,11 @@ border:none;}
 .beta-rotator canvas{width:100%;}
 .beta-rotator {font-family: "Open Sans",sans-serif;}
 .history-slider span {font-family: "Open Sans",sans-serif;}
+
+.add-to-cart1:hover{
+    background-color: #7cc1c2;
+}
+
+.beta-btn:hover{
+    background-color: rgb(143, 119, 41);
+}

@@ -68,11 +68,11 @@
                                 @if(Session::has('cart'))
                                 @foreach($product_cart as $cart)
                                     <div class="media">
-                                        <img width="25%" src="source/image/product/{{$cart['item']['image']}}" alt="" class="pull-left">
+                                        <img width="25%" src="{{$cart['item']['image_path']}}" alt="" class="pull-left">
                                         <div class="media-body">
-                                            <p class="font-large">{{$cart['item']['name']}}</p>
-                                            <span class="color-gray your-order-info">Đơn giá: {{number_format($cart['price'])}} vnd</span>
-                                            <span class="color-gray your-order-info">Số lượng: {{$cart['qty']}}</span>
+                                            <p class="font-large"><strong>{{$cart['item']['name']}}</strong></p>
+                                            <p class="color-gray your-order-info">Đơn giá: {{number_format($cart['price'])}} vnd</p>
+                                            <p class="color-gray your-order-info">Số lượng: {{$cart['qty']}}</p>
                                         </div>
                                     </div>
                                 <!-- end one item -->

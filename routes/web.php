@@ -30,6 +30,9 @@ Route::get('/contact','PageController@getContact')->name('contacts');
 Route::get('/about','PageController@getAbout')->name('about');
 
 Route::get('/addtocart/{id?}','PageController@getAddToCart')->name('addtocart');
+Route::post('/add-to-cart','PageController@AddToCart');
+
+
 
 Route::get('/delete-cart/{id?}','PageController@getDeleteCart')->name('deletecart');
 

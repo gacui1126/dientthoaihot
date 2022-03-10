@@ -11,16 +11,15 @@
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                     @if(Auth::check())
-                        {{-- @if(Auth::user()->full_name == 'admin') --}}
-                        @if($na === 'admin' or $na === 'content' or $na ==='developer')
-                        <li><a class="btn btn-success" href="{{route('admin')}}"><i class="fa fa-user"></i>Chào {{Auth::user()->full_name}}</a></li>
-                        <li><a class="btn btn-danger" href="{{route('logout')}}"><i class="fa fa-user"></i>Đăng xuất</a></li>
+                        @if(Auth::user()->full_name == 'admin')
+                        {{-- @if($na === 'admin' or $na === 'content' or $na ==='developer') --}}
+                        <li><a class="btn btn-success" href="{{route('admin')}}"><i class="fa fa-user"></i>{{Auth::user()->full_name}}</a></li>
+                        <li><a class="btn btn-danger" href="{{route('logout')}}"><i class="fas fa-sign-out-alt" style="font-size: 2em;"></i></i>Đăng xuất</a></li>
                         @else
                         <li>
-                            <a class="btn btn-success" href="{{route('user.profile.index',['id'=>Auth::user()->id])}}"><i class="fa fa-user"></i>Chào {{Auth::user()->full_name}}</a>
+                            <a class="btn btn-success" href="{{route('user.profile.index',['id'=>Auth::user()->id])}}"><i class="fa fa-user"></i>{{Auth::user()->full_name}}</a>
                         </li>
-
-                        <li><a class="btn btn-danger" href="{{route('logout')}}"><i class="fa fa-user"></i>Đăng xuất</a></li>
+                        <li><a class="btn btn-danger" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i></i>Đăng xuất</a></li>
                         @endif
                     @else
                     <li><a class="btn btn-success" href="{{route('page-signup')}}">Đăng kí</a></li>
@@ -34,9 +33,9 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-            <a href="{{route('trang-chu')}}" id="logo"><img src="source/assets/dest/images/logo-2.png" width="100px" alt=""></a>
+            <a href="{{route('trang-chu')}}" id="logo"><img src="source/assets/dest/images/logo.png" width="100px" alt=""></a>
             </div>
-            <div class="pull-right beta-components space-left ov">
+            <div class="pull-right beta-components space-left ov" style="margin-top: 20px">
                 <div class="space10">&nbsp;</div>
                 <div class="beta-comp">
                     <form role="search" method="get" id="searchform" action="{{route('search')}}">
@@ -46,11 +45,18 @@
                 </div>
 
                 <div class="beta-comp">
-                    @if(Session::has('cart'))
+                    <a href="checkout" style="text-decoration:none;color:black">
+                        <div class="cart">
+                            <div class="btn-checkout">
+                                <i class="fa fa-shopping-cart"></i>
+                                Giỏ hàng
+                            </div>
+                        </div>
+                    </a>
+                    {{-- @if(Session::has('cart'))
                     <div class="cart">
                         <div class="beta-select"><i class="fa fa-shopping-cart"></i>@if(Session::has('cart')) Giỏ hàng ({{Session('cart')->totalQty}}) @else Giỏ hàng (trống) @endif <i class="fa fa-chevron-down"></i></div>
                         <div class="beta-dropdown cart-body">
-
                             @foreach ($product_cart as $Product_cart)
                             <div class="cart-item">
                                 <a class="cart-item-delete" href="{{route('deletecart',$Product_cart['item']['id'])}}"><i class="fa fa-times"></i></a>
@@ -60,7 +66,6 @@
                                         <span class="cart-item-title">{{$Product_cart['item']['name']}}</span>
                                         <div class="space10">&nbsp;</div>
                                         <div class="space10">&nbsp;</div>
-                                        {{-- <span class="cart-item-options">Size: XS; Colar: Navy</span> --}}
                                         <span class="cart-item-amount">{{$Product_cart['qty']}}*<span>{{$Product_cart['item']['unit_price']}}</span>
                                     </div>
                                 </div>
@@ -78,8 +83,11 @@
                             </div>
                         </div>
                     </div> <!-- .cart -->
-                    @endif
+                    @endif --}}
                 </div>
+
+
+
             </div>
             <div class="clearfix"></div>
         </div> <!-- .container -->
@@ -96,13 +104,22 @@
                             @foreach($product_type as $Product_type)
                             <li><a href="{{ route('product_type' , $Product_type->id) }}">{{$Product_type->name}}</a></li>
                             @endforeach
-
                         </ul>
                 </li>
                 <li><a href="{{route('about')}}">Giới thiệu</a></li>
                 <li><a href="{{route('contacts')}}">Liên hệ</a></li>
                 <div class="clearfix"></div>
+
             </nav>
         </div> <!-- .container -->
     </div> <!-- .header-bottom -->
 </div> <!-- #header -->
+
+    <script src="{{asset("source/assets/dest/js/jquery.js")}}"></script>
+	<script src="{{asset("source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js")}}"></script>
+    <script src="{{asset("source/assets/dest/js/sweetalert.js")}}"></script>
+<script>
+
+
+</script>
+
